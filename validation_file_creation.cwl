@@ -42,18 +42,26 @@ arguments: ["in_file:\n  class: File\n  path: $(inputs.in_dir)/$(inputs.input).m
 
 s:author:
   - class: s:Person
+    s:identifier: https://orcid.org/0009-0000-3287-0295
+    s:email: mailto:lincoln.sherpa@tu-dresden.de
+    s:name: Lincoln Sherpa
+
+s:contributor:
+  - class: s:Person
     s:identifier: https://orcid.org/0000-0002-7899-7192
     s:email: mailto:sneumann@ipb-halle.de
     s:name: Steffen Neumann
 
-s:citation: https://dx.doi.org/10.6084/m9.figshare.3115156.v2
-s:codeRepository: https://github.com/common-workflow-language/common-workflow-language
-s:dateCreated: "2021-6-14"
-s:license: https://spdx.org/licenses/MIT
+s:citation: https://doi.org/10.5281/zenodo.14923739
+s:codeRepository: https://github.com/NFDI4Chem/cs-ms-converter
+s:dateCreated: "2024-11-01"
+s:license: https://mit-license.org/
+
 
 $namespaces:
   s: https://schema.org/
   edam: http://edamontology.org/
+
 $schemas:
-  - https://schema.org/version/latest/schemaorg-current-http.rdf
+  - https://schema.org/version/latest/schemaorg-current-https.rdf
   - http://edamontology.org/EDAM_1.18.owl

@@ -25,13 +25,41 @@ outputs:
 
 expression: |
   ${
-  var test= inputs.input_file.location.replace('file://','');
-  var test1= test.substr(0,test.lastIndexOf("/"));
-  var test3= test.substr(test.lastIndexOf("/")+1);
-  test3= test3.substr(0,test3.lastIndexOf('.'));
-  if (test3.endsWith(".D") || test3.endsWith(".d") || test3.endsWith(".Wiff") ||test3.endsWith(".wiff") || test3.endsWith(".WIFF")){
-    test3= test3.substr(0,test3.lastIndexOf('.'));
+  var ipFilePath= inputs.input_file.location.replace('file://','');
+  var baseFolderPath= ipFilePath.substr(0,ipFilePath.lastIndexOf("/"));
+  var fileBaseName= ipFilePath.substr(ipFilePath.lastIndexOf("/")+1);
+  fileBaseName= fileBaseName.substr(0,fileBaseName.lastIndexOf('.'));
+  if (fileBaseName.endsWith(".D") || fileBaseName.endsWith(".d") || fileBaseName.endsWith(".Wiff") ||fileBaseName.endsWith(".wiff") || fileBaseName.endsWith(".WIFF")){
+    fileBaseName= fileBaseName.substr(0,fileBaseName.lastIndexOf('.'));
   }
-  var test4= test3 + "_FileConverter_op.mzML"
-  var test5= test1.substr(0,test1.lastIndexOf("/"))+"/fileconverter_cwl.sh";
-  return {"output": test, "output2": test1, "output3": test3, "output4": test4, "output5": test5}; }
+  var opFileName= fileBaseName + "_FileConverter_op.mzML"
+  var intermediateFilePath= baseFolderPath.substr(0,baseFolderPath.lastIndexOf("/"))+"/fileconverter_cwl.sh";
+  return {"output": ipFilePath, "output2": baseFolderPath, "output3": fileBaseName, "output4": opFileName, "output5": intermediateFilePath}; }
+
+
+
+s:author:
+  - class: s:Person
+    s:identifier: https://orcid.org/0009-0000-3287-0295
+    s:email: mailto:lincoln.sherpa@tu-dresden.de
+    s:name: Lincoln Sherpa
+
+s:contributor:
+  - class: s:Person
+    s:identifier: https://orcid.org/0000-0002-7899-7192
+    s:email: mailto:sneumann@ipb-halle.de
+    s:name: Steffen Neumann
+
+s:citation: https://doi.org/10.5281/zenodo.14923739
+s:codeRepository: https://github.com/NFDI4Chem/cs-ms-converter
+s:dateCreated: "2024-11-01"
+s:license: https://mit-license.org/
+
+
+$namespaces:
+  s: https://schema.org/
+  edam: http://edamontology.org/
+
+$schemas:
+  - https://schema.org/version/latest/schemaorg-current-https.rdf
+  - http://edamontology.org/EDAM_1.18.owl

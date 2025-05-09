@@ -21,51 +21,70 @@ inputs:
    # default: [mzML]
 
 steps:
-  step1:
+  1.Metadata_Extraction:
     run: string_extractor.cwl
     in:
       input_file: in_file
     out: [output, output2, output3, output4, output5]
 
-  step2:
+  2.Conversion_Process:
     run: msconvert.cwl
     in:
       in_file1: in_file1
       in_file: in_file
       in_file2: in_file2
-      in_dir: step1/output2
+      in_dir: 1.Metadata_Extraction/output2
     out: [output_dir]
   
-  step3:
+  3.Post_processing:
     run: validation_file_creation.cwl
     in:
-      input: step1/output3
-      in_dir: step1/output2
-      input2: step1/output5
+      input: 1.Metadata_Extraction/output3
+      in_dir: 1.Metadata_Extraction/output2
+      input2: 1.Metadata_Extraction/output5
     out: [output_dir]
 
 
 outputs:
-  outputA:
+  inputFilePath:
     type: string
-    outputSource: step1/output
+    outputSource: 1.Metadata_Extraction/output
 
-  outputB:
+  outputFileName:
     type: string
-    outputSource: step1/output4
+    outputSource: 1.Metadata_Extraction/output4
 
-  outputC:
+  ConversionOutput:
     type: Directory
-    outputSource: step2/output_dir
+    outputSource: 2.Conversion_Process/output_dir
 
-  outputD:
+  PostProcessing:
     type: Directory
-    outputSource: step3/output_dir
+    outputSource: 3.Post_processing/output_dir
+
+
+s:author:
+  - class: s:Person
+    s:identifier: https://orcid.org/0009-0000-3287-0295
+    s:email: mailto:lincoln.sherpa@tu-dresden.de
+    s:name: Lincoln Sherpa
+
+s:contributor:
+  - class: s:Person
+    s:identifier: https://orcid.org/0000-0002-7899-7192
+    s:email: mailto:sneumann@ipb-halle.de
+    s:name: Steffen Neumann
+
+s:citation: https://doi.org/10.5281/zenodo.14923739
+s:codeRepository: https://github.com/NFDI4Chem/cs-ms-converter
+s:dateCreated: "2024-11-01"
+s:license: https://mit-license.org/
 
 
 $namespaces:
   s: https://schema.org/
   edam: http://edamontology.org/
+
 $schemas:
-  - https://schema.org/version/latest/schemaorg-current-http.rdf
+  - https://schema.org/version/latest/schemaorg-current-https.rdf
   - http://edamontology.org/EDAM_1.18.owl
