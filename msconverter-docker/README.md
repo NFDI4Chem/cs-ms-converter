@@ -1,4 +1,4 @@
-# msconvert_v2_s3
+# msconvert_v2
 
 This is the alternate version of [msconvert_v2](https://git.rwth-aachen.de/linsherpa/msconverter_v2) without Common Workflow Language (CWL)
 
