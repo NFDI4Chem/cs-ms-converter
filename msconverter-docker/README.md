@@ -1,7 +1,6 @@
 # msconvert_v2
 
-This is the alternate version of [msconvert_v2](https://git.rwth-aachen.de/linsherpa/msconverter_v2) without Common Workflow Language (CWL)
-
+This repository offers an updated implementation of the original Mass Spectrometry File Converter, replacing its former CWL-based architecture with a cleaner, modular system based on individual microservices managed by a centralized controller. It includes detailed setup instructions for running locally, deploying via Docker, and managing Kubernetes installations—covering both manual and Helm chart-based configurations for scalability.
 
 
 ##  🛠️  Initial Step
